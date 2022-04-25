@@ -1,0 +1,40 @@
+.header {
+    position: fixed;
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    background-color: transparent;
+    border-radius: 3px;
+    color: #8D97C7;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.nav {
+    display: flex;
+    flex: 1 1 auto;
+    margin: 0 16px;
+}
+
+.header a {
+    display: flex;
+    height: 40px;
+    min-width: 40px;
+    align-items: center;
+    justify-content: center;
+    color: currentColor;
+    border-radius: 3px;
+}
+
+.header a + a {
+    margin-left: 8px;
+}
+
+.header :global .active {
+    background-color: #2F97EF;
+    color: #fff;
+}

@@ -1,0 +1,101 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  height: -webkit-fill-available;
+  font-size: 62.5%;
+}
+
+body,
+#root,
+#map,
+.app {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  max-height: -webkit-fill-available;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 1.4rem;
+  background: #f1f3f5;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+section {
+  padding: 88px 16px;
+}
+
+main {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.app {
+  color: var(--color, #343a40);
+}
+
+select {
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  padding: 0 1em 0 0;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+.control {
+  position: absolute;
+  top: 20px;
+  right: 64px;
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  background-color: #343a40;
+  color: #aaa;
+  z-index: 1000;
+}
+.control div + div {
+  margin-left: 16px;
+}
+
+.instrux {
+  font-size: 13px;
+  color: #868e96;
+  padding: 1.5em;
+}
+
+/*
+  This will hide the focus indicator if the element receives focus via the mouse,
+  but it will still show up on keyboard focus.
+*/
+.js-focus-visible :focus:not(.focus-visible) {
+  outline: none;
+}
+ 
+/*
+  Optionally: Define a strong focus indicator for keyboard focus.
+  If you choose to skip this step then the browser's default focus
+  indicator will be displayed instead.
+*/
+/* .js-focus-visible .focus-visible {
+  
+} */

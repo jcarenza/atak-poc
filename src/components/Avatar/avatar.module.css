@@ -6,7 +6,7 @@
     color: var(--avatar-color, #DFE4E8);
     border: none;
     border-radius: 50%;
-    height: 32px;
-    width: 32px;
+    height: 3.2rem;
+    width: 3.2rem;
     font-weight: 700;
 }

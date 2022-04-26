@@ -80,7 +80,7 @@ function connect() {
         // connect to websocket
         console.log("connect")
         // listen for socket messages
-        // Fake websocket connections with local dummy data
+        // Fake websocket connections with local data
         conn1 = setInterval(() => {
             let data = []
             sources.forEach((src) => {
@@ -101,6 +101,7 @@ function connect() {
 }
 
 function tick(timestamp) {
+    // only update main thread when data has changed, and beyond frame rate threshold
     if (!upToDate && timestamp > lastUpdate + frameRate) {
         lastUpdate = timestamp
         upToDate = true

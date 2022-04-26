@@ -8,7 +8,11 @@ import WebWorker from "worker-loader!./realtime.worker"
 import "mapbox-gl/dist/mapbox-gl.css"
 
 const { REACT_APP_MAPBOX_TOKEN } = process.env
-const worker = new WebWorker() // <-- should be initialized at the app level
+const worker = new WebWorker()
+
+/*
+    Use Deck.gl layer in a fully interactive Mapbox instance (canvas context)
+*/
 
 export default function MapboxView () {
     const [rate, setRate] = useState(10000)
@@ -22,6 +26,7 @@ export default function MapboxView () {
             center: [-74.5, 40], // starting position [lng, lat]
             zoom: 2,
         })
+        // initialize Deck.gl layer
         const myScatterplotLayer = new MapboxLayer({
             id: "my-scatterplot",
             type: ScatterplotLayer,

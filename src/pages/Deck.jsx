@@ -1,9 +1,10 @@
 /* eslint-disable import/no-webpack-loader-syntax */
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import DeckGL from "@deck.gl/react"
 import { ScatterplotLayer } from "@deck.gl/layers"
 import Map from "react-map-gl"
 import WebWorker from "worker-loader!./realtime.worker"
+import { ThemeContext } from "context"
 import "mapbox-gl/dist/mapbox-gl.css"
 
 const { REACT_APP_MAPBOX_TOKEN } = process.env
@@ -12,6 +13,7 @@ const workerThread = new WebWorker()
 export default function RealtimeDeck () {
     const [pointData, setPointData] = useState(undefined)
     const [frameRate, setFrameRate] = useState(33)
+    const theme = useContext(ThemeContext)
 
     const INITIAL_VIEW_STATE = {
         longitude: -106.47917753619672,
@@ -59,7 +61,7 @@ export default function RealtimeDeck () {
             depthTest: false
         }
     })
-
+    
     return (
         <DeckGL 
             initialViewState={INITIAL_VIEW_STATE} 
@@ -72,7 +74,7 @@ export default function RealtimeDeck () {
             <Map
                 attributionControl={false}
                 mapboxAccessToken={REACT_APP_MAPBOX_TOKEN}
-                mapStyle="mapbox://styles/jcarenza/ckjc254l96fjp19s8zbsmfjrr"
+                mapStyle={theme === 'dark' ? 'mapbox://styles/jcarenza/ckjc254l96fjp19s8zbsmfjrr' : 'mapbox://styles/jcarenza/ckfujel203jsu19lqqts2cwsg'}
             />
             <div className="control" onChange={handleChange}>
                 <div><input type="radio" value={33} name="frameRate" defaultChecked /> 30 fps</div>

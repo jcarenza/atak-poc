@@ -2,6 +2,7 @@ import { StrictMode } from "react"
 import ReactDOM from "react-dom"
 import { ErrorBoundary } from "react-error-boundary"
 import ErrorFallback from "components/ErrorFallback"
+import Theme from "components/Theme"
 import { BrowserRouter } from "react-router-dom"
 import { useAuth } from "hooks/auth"
 import Login from "pages/Login"
@@ -21,9 +22,11 @@ ReactDOM.render(
     <StrictMode>
         <ErrorBoundary FallbackComponent={ErrorFallback} onError={postErrorException}>
             <BrowserRouter>
-                <AuthCheck>
-                    <App />
-                </AuthCheck>
+                <Theme>
+                    <AuthCheck>
+                        <App />
+                    </AuthCheck>
+                </Theme>
             </BrowserRouter>
         </ErrorBoundary>
     </StrictMode>,

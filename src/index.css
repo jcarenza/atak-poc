@@ -16,11 +16,21 @@
 
   --page-bkd: var(--gray-1);
   --page-color: var(--gray-8);
-  --nav-bkd: var(--gray-8);
-  --nav-color: var(--gray-4);
+  --nav-bkd: var(--base);
+  --nav-color: var(--gray-8);
   --nav-highlight: #dbe4ff;
   --nav-highlight-color: var(--primary);
   --shadow-color: rgba(73, 80, 87, .12);
+}
+
+body.dark {
+  --page-bkd: var(--gray-8);
+  --page-color: var(--gray-2);
+  --nav-bkd: var(--gray-9);
+  --nav-color: var(--gray-4);
+  --nav-highlight: #dbe4ff;
+  --nav-highlight-color: var(--primary);
+  --shadow-color: rgba(73, 80, 87, 0);
 }
 
 *, *::before, *::after {
@@ -93,6 +103,7 @@ select::-ms-expand {
   padding: .8rem;
   background-color: var(--nav-bkd);
   color: var(--nav-color);
+  box-shadow: 0 .8rem 1.6rem var(--shadow-color);
   z-index: 1000;
 }
 .control div + div {

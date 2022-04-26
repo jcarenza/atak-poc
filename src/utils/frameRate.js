@@ -3,7 +3,7 @@ export function calcOptimalFrameRate(zoomLevel) {
     // at higher zoom levels, an object needs to travel farther to move 1 pixel on screen
     // therefore, the refresh rate can be lower to reduce the amount of subpixel frames
 
-    if (zoomLevel < 11) {
+    if (typeof zoomLevel === "number" && zoomLevel < 11) {
         return 10000
     }
     switch (Math.floor(zoomLevel)) {

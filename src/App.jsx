@@ -19,7 +19,7 @@ import DeckView from "pages/Deck"
 
 export default function App () {
     return (
-        <div className="app">
+        <div className="app" data-cy="app">
             <Nav />
             <Switch>
                 <Route exact path="/" component={DeckView} />

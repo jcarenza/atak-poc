@@ -1,0 +1,8 @@
+{
+    "fixturesFolder": false,
+    "pluginsFile": false,
+    "env": {
+        "app_url": "http://localhost:3856",
+        "cookie_name": "ThirdSt"
+    }
+}

@@ -13,7 +13,7 @@ const workerThread = new WebWorker()
 export default function RealtimeDeck () {
     const [pointData, setPointData] = useState(undefined)
     const [frameRate, setFrameRate] = useState(33)
-    const theme = useContext(ThemeContext)
+    const {theme, changeTheme} = useContext(ThemeContext)
 
     const INITIAL_VIEW_STATE = {
         longitude: -106.47917753619672,
@@ -77,6 +77,7 @@ export default function RealtimeDeck () {
                 mapStyle={theme === 'dark' ? 'mapbox://styles/jcarenza/ckjc254l96fjp19s8zbsmfjrr' : 'mapbox://styles/jcarenza/ckfujel203jsu19lqqts2cwsg'}
             />
             <div className="control" onChange={handleChange}>
+                <div><button onClick={() => changeTheme(theme === 'dark' ? 'light' : 'dark')}>Toggle Theme</button></div>
                 <div><input type="radio" value={33} name="frameRate" defaultChecked /> 30 fps</div>
                 <div><input type="radio" value={66} name="frameRate" /> 15 fps</div>
                 <div><input type="radio" value={125} name="frameRate" /> 8 fps</div>

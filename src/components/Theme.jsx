@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useCallback } from "react"
 import { ThemeContext } from "context";
 
 // 1. look for a stored theme value in localStorage
@@ -7,19 +7,38 @@ import { ThemeContext } from "context";
 // user should be able to choose a specific theme (store that value in localStorage)
 // make theme value and setter available to app through Context.Provider
 
+const SAVED_THEME_KEY = 'theme'
+
 function getInitialThemeValue(){
-    const savedValue = localStorage.getItem('theme')
-    const osValue = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-    return savedValue || osValue
+    return localStorage.getItem(SAVED_THEME_KEY) || getCurrentOSPreference()
+}
+
+function getCurrentOSPreference(){
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
 }
 
 export default function ThemeControl({children}){
     const [theme, setTheme] = useState(getInitialThemeValue())
 
+    const changeTheme = useCallback(
+        (value) => {
+            if(value === 'light' || value === 'dark'){
+                // persist selected theme value in localStorage
+                localStorage.setItem(SAVED_THEME_KEY, value)
+                setTheme(value)
+            }else {
+                // clear any previously selected theme value from localStorage ('auto')
+                localStorage.removeItem(SAVED_THEME_KEY)
+                setTheme(getCurrentOSPreference())
+            }
+        },
+        [setTheme]
+    )
+
     useEffect(() => {
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-            // only apply this change if user has not chosen a specific mode (eg. 'auto')
-            const savedValue = localStorage.getItem('theme')
+            // only apply os theme changes when in 'auto' mode (no persisted value)
+            const savedValue = localStorage.getItem(SAVED_THEME_KEY)
             if(!savedValue){
                 setTheme(event.matches ? "dark" : "light")
             }
@@ -34,7 +53,5 @@ export default function ThemeControl({children}){
         }
     }, [theme])
 
-    console.log({theme})
-
-    return <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>
+    return <ThemeContext.Provider value={{theme, changeTheme}}>{children}</ThemeContext.Provider>
 }
